@@ -37,6 +37,7 @@ class BooksAdapter(var itemClick: OnItemClickListener) : ListAdapter<BookLocal, 
             binding.tvtitle.text = bookLocal.title
             Picasso.get()
                 .load(bookLocal.imageLink)
+                .resize(100, 150)
                 .into(binding.ivimage)
 
         }
