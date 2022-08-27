@@ -2,6 +2,7 @@ package com.certification.libreriaecos
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -72,8 +73,23 @@ class SecondFragment : Fragment() {
 
 
         binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            intentMail()
         }
+    }
+
+    private fun intentMail() {
+        val destination = "ventas@ecosbooks.cl"
+        val subject = "Consulta por libro {TITLE} id {ID}"
+        val body = "Hola\n" +
+                "Vi el libro {TITLE} de código {ID} y me gustaría que me contactaran a este correo o al siguiente número _________\n" +
+                "Quedo atento."
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            data = Uri.parse("mailto:")
+            putExtra(Intent.EXTRA_EMAIL, destination)
+            putExtra(Intent.EXTRA_SUBJECT, subject)
+            putExtra(Intent.EXTRA_TEXT, body)
+        }
+        startActivity(intent    )
     }
 
     override fun onDestroyView() {
