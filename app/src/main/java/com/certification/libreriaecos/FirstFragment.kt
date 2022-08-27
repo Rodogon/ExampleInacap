@@ -8,18 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.certification.libreriaecos.data.local.entitties.BookLocal
 import com.certification.libreriaecos.databinding.FragmentFirstBinding
+import com.certification.libreriaecos.ui.BooksAdapter
+import com.certification.libreriaecos.ui.OnItemClickListener
 import com.certification.libreriaecos.viewmodel.BookViewModel
 import com.certification.libreriaecos.viewmodel.BookViewModelFactory
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment() {
+class FirstFragment : Fragment(), OnItemClickListener {
 
     private val bookViewModel: BookViewModel by activityViewModels {
         BookViewModelFactory((activity?.application as AppBook).repository)
     }
+
+    private lateinit var adapter: BooksAdapter
 
     private var _binding: FragmentFirstBinding? = null
 
@@ -39,23 +45,32 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val recyclerView = _binding?.recyclerview
+        if (recyclerView != null) {
+            recyclerView.layoutManager = LinearLayoutManager(context)
+        }
+        adapter = BooksAdapter(this)
+        if (recyclerView != null) {
+            recyclerView.adapter = adapter
+        }
         obserbData()
 
-        /*binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        }
-         */
+
     }
 
     private fun obserbData() {
         bookViewModel.getAllBooksFromDB().observe(viewLifecycleOwner){
             Log.d("RODO", "UI observer $it")
+            adapter.submitList(it)
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onItemClick(book: BookLocal) {
+        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
     }
 }
