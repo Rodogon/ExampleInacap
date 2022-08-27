@@ -1,5 +1,8 @@
 package com.certification.libreriaecos
 
+
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -65,12 +68,15 @@ class FirstFragment : Fragment(), OnItemClickListener {
         }
     }
 
+    override fun onItemClick(book: BookLocal) {
+        bookViewModel.getOneBoardGame(book)
+        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-    override fun onItemClick(book: BookLocal) {
-        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-    }
+
 }

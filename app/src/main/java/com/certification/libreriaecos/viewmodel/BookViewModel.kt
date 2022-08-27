@@ -11,6 +11,8 @@ import kotlinx.coroutines.launch
 
 class BookViewModel(private val repository: BookRepository) : ViewModel() {
 
+    val selected = MutableLiveData<BookLocal>()
+
     init {
         fetchAllBooks()
     }
@@ -19,9 +21,14 @@ class BookViewModel(private val repository: BookRepository) : ViewModel() {
         return repository.getAllBooksFromDB()
     }
 
-    fun getOneBookFromDB(id: Int) : LiveData<BookDetailLocal>{
+    fun getOneBoardGame(item: BookLocal){
+        selected.value = item
+    }
+
+   /* fun getOneBookFromDB(id: Int) : LiveData<BookDetailLocal>{
         return repository.getBookById(id)
     }
+    */
 
     fun fetchAllBooks() = viewModelScope.launch {
         repository.fetchAllBooks()
