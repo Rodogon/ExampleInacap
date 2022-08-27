@@ -5,11 +5,16 @@
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="send">Send Message</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="book_image">Book\'s Image</string>
     <string name="title_s_book">Title\'s Book</string>
     <string name="author_s_book">Author\'s Book</string>
+    <string name="pages">Pages</string>
+    <string name="pagesDetail">240</string>
+    <string name="link">Access Link</string>
+    <string name="author_detail">Author Detail</string>
+    <string name="title_detail">Title Detail</string>
 </resources>
