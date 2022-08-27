@@ -9,4 +9,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="book_image">Book\'s Image</string>
+    <string name="title_s_book">Title\'s Book</string>
+    <string name="author_s_book">Author\'s Book</string>
 </resources>

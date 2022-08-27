@@ -42,9 +42,10 @@ class FirstFragment : Fragment() {
 
         obserbData()
 
-        binding.buttonFirst.setOnClickListener {
+        /*binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+         */
     }
 
     private fun obserbData() {
