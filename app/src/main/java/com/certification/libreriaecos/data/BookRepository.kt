@@ -31,6 +31,10 @@ class BookRepository(private val bookDao: BookDao) {
                 }else{
                     Log.d("RODO", "${response.body()}")
                     bookDao.insertAllBooks(fromRemoteToLocalBook(response.body()!!))
+
+                    response.body()!!.forEach{
+                        fetchOneBook(it.id)
+                    }
                 }
             }
             false -> {

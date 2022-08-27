@@ -15,7 +15,9 @@ class BookViewModel(private val repository: BookRepository) : ViewModel() {
 
     init {
         fetchAllBooks()
+
     }
+
 
     fun getAllBooksFromDB() : LiveData<List<BookLocal>> {
         return repository.getAllBooksFromDB()
@@ -25,14 +27,15 @@ class BookViewModel(private val repository: BookRepository) : ViewModel() {
         selected.value = item
     }
 
-   /* fun getOneBookFromDB(id: Int) : LiveData<BookDetailLocal>{
+   fun getOneBookFromDB(id: Int) : LiveData<BookDetailLocal>{
         return repository.getBookById(id)
     }
-    */
+
 
     fun fetchAllBooks() = viewModelScope.launch {
         repository.fetchAllBooks()
     }
+
 
 
 
